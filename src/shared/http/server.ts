@@ -1,31 +1,35 @@
 import 'dotenv/config'
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
+import { routes } from './routes'
+// import cors from 'cors'
+import { AppError } from '@shared/Errors/AppError'
 
 const app = express()
 
+// app.use(cors)
+
 app.use(express.json()) //Falo pro express que ele vai usar json como retorno
 
-const projects: any[] = [] //Array em typeScript
+app.use(routes)
 
-app.get('/', (request, response) => {
-  return response.json({ message: 'Olá mundo!' })
-})
+app.use(
+  (error: Error, request: Request, response: Response, next: NextFunction) => {
+    if (error instanceof AppError) {
+      return response.status(error.statusCode).json({
+        status:'error',
+        message: error.message,
+      })
+    }
+    console.log(error)
+    return response.status(500).json({
+      status:'Error',
+      message: 'Internal server error',
+    })
+  },
+)
 
-app.post('', (request, response) => {
-  const { id, name, owner } = request.body
-  const project = {
-    id,
-    name,
-    owner,
-  }
-  if (!name || !owner) {
-    return response.status(400).json({ error: 'Name and owner are required' })
-  }
-
-  projects.push(project)
-})
 app.listen(process.env.PORT, () => {
   //process.env.PORT Vaiavel de ambiente criada para não versionar a mesma
-  console.log(`Server started on port 3000! ${process.env.PORT}`)
+  console.log({ message: `Server started on port ${process.env.PORT}!` })
 })
