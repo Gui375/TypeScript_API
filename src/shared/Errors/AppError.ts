@@ -7,5 +7,3 @@ export class AppError {
     this.statusCode = statusCode
   }
 }
-
-new AppError('Acesso Negado', 401)

@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import express, { NextFunction, Request, Response } from 'express'
+import express, { Request, Response } from 'express'
 import 'express-async-errors'
 import { routes } from './routes'
 // import cors from 'cors'
@@ -13,8 +13,7 @@ app.use(express.json()) //Falo pro express que ele vai usar json como retorno
 
 app.use(routes) //Fala pro typeScript que as rotas serão executadas por esse objeto routes
 
-app.use(
-  (error: Error, request: Request, response: Response, next: NextFunction) => {
+app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
       return response.status(error.statusCode).json({
         status: 'error',

@@ -7,6 +7,6 @@ const routes = Router()
 //   response.json({ message: 'Olá mundo !' })
 // })
 
-routes.use('/Roles', rolesRoutes)
+routes.use('/roles', rolesRoutes)
 
 export { routes }
