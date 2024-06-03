@@ -11,7 +11,7 @@ const app = express()
 
 app.use(express.json()) //Falo pro express que ele vai usar json como retorno
 
-app.use(routes)
+app.use(routes) //Fala pro typeScript que as rotas serão executadas por esse objeto routes
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
