@@ -1,4 +1,5 @@
 import { Role } from '@roles/http/routes/entities/Role'
+import { response } from 'express'
 
 type CreateRoleDTO = {
   name: string
@@ -22,5 +23,9 @@ export class RolesRepository {
 
     this.roles.push(role)
     return role
+  }
+
+  findAll(): Role[] {
+    return this.roles
   }
 }
