@@ -5,7 +5,7 @@ import { AppError } from '@shared/Errors/AppError'
 type CreateRoleDTO = {
   name: string
 }
-
+//Onde fica as regras e onde é gravado o novo objeto de fato
 export class CreateRoleUseCase {
   constructor(private rolesRepository: RolesRepository) {}
 

@@ -3,7 +3,7 @@ import { CreateRoleUseCase } from './CreateRoleUseCase'
 
 export class CreateRoleController {
   constructor(private createRoleUseCase: CreateRoleUseCase) {}
-
+  //Onde fica parte da gravação
   handle(request: Request, response: Response): Response {
     const { name } = request.body
 
