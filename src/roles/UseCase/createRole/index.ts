@@ -2,7 +2,7 @@ import { RolesRepository } from '@roles/repositories/RolesRepository'
 import { CreateRoleUseCase } from './CreateRoleUseCase'
 import { CreateRoleController } from './CreateRoleController'
 
-const rolesRepository = new RolesRepository()
+const rolesRepository = RolesRepository.getInstance() //Estamos apenas chamando uma instancia que já existe
 
 const createRoleUseCase = new CreateRoleUseCase(rolesRepository)
 
