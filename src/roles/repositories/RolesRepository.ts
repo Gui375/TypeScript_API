@@ -5,7 +5,7 @@ type CreateRoleDTO = {
 }
 export class RolesRepository {
   private roles: Role[]
-  private static INSTANCE: RolesRepository
+  private static INSTANCE: RolesRepository //Implementação do singleton
   //Static é uma variavel que não terá o valor alterado dentro do código
   private constructor() {
     this.roles = []
