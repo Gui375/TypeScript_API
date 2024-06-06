@@ -1,5 +1,6 @@
 //Conexão com o banco
 import { DataSource } from 'typeorm'
+import { CreateRolesTable1717677183833 } from './migrations/1717677183833-CreateRolesTable'
 
 export const dataSource = new DataSource({
   type: 'sqlite',
@@ -9,5 +10,7 @@ export const dataSource = new DataSource({
   // password: 'test',
   database: './db.sqlite',
   entities: [], //Definindo as entidades
-  migrations: [], //Definindo as migracoes
+  migrations: [CreateRolesTable1717677183833], //Definindo as migracoes
 })
+
+//Comando pra executar as migration npm run typeorm -- -d ./src/shared/typeorm/index.ts  migration:run 
