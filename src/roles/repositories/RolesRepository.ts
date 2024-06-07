@@ -61,7 +61,7 @@ export class RolesRepository {
 
   async findById(id: string): Promise<Role | null> {
     //TypeORM retorna null no lugar de undefinide
-    return await this.repository.findOneBy({ id: id }) //Quando o nome do parametro do método é diferente do nome da coluna a ser buscada, temos que referenciar desta forma, porem quando é igual podemos passar somente o nome
+    return await this.repository.findOneBy({ id }) //Quando o nome do parametro do método é diferente do nome da coluna a ser buscada, temos que referenciar desta forma, porem quando é igual podemos passar somente o nome
   }
 
   async findAll({
