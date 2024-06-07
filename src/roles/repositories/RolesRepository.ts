@@ -4,7 +4,6 @@ import { Repository } from 'typeorm'
 
 type CreateRoleDTO = {
   name: string
-  id: number
 }
 
 export type PaginateParams = {
@@ -12,14 +11,14 @@ export type PaginateParams = {
   page: number
   skip: number
   take: number
-}
+} //Parametros do paginator
 
 export type RolesPaginateProperties = {
   per_page: number
   total: number
   current_page: number
   data: Role[]
-}
+} //Retorno do paginator
 
 export class RolesRepository {
   private repository: Repository<Role> //Essa variavel vai manipular as informações da estrutura de dados role
