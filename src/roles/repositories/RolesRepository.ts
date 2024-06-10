@@ -54,9 +54,9 @@ export class RolesRepository {
   }
   //Diferença do método create pro método save, é que no create estamos criando um novo objeto pra depois salvar. Já no Save, passamos uma propiedade como parametro e salvamos depois
 
-  async findByName(NameExe: string): Promise<Role | null> {
+  async findByName(name: string): Promise<Role | null> {
     //TypeORM retorna null no lugar de undefinide
-    return await this.repository.findOneBy({ name: NameExe }) //Quando o nome do parametro do método é diferente do nome da coluna a ser buscada, temos que referenciar desta forma, porem quando é igual podemos passar somente o nome
+    return await this.repository.findOneBy({ name }) //Quando o nome do parametro do método é diferente do nome da coluna a ser buscada, temos que referenciar desta forma, porem quando é igual podemos passar somente o nome
   }
 
   async findById(id: string): Promise<Role | null> {
