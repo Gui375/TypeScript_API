@@ -1,5 +1,5 @@
 /dist
-/node_modules
+# /node_modules
 
 # Logs
 logs
@@ -42,4 +42,4 @@ tsconfig.tsbuildinfo
 
 uploads/*
 !uploads/.gitkeep
-db.sqlite
+# db.sqlite
