@@ -1,39 +1,20 @@
 import { Role } from '@roles/http/routes/entities/Role'
 import { dataSource } from '@shared/typeorm'
 import { Repository } from 'typeorm'
+import {
+  CreateRoleDTO,
+  IRolesRepository,
+  PaginateParams,
+  RolesPaginateProperties,
+} from './IRolesRepository'
 
-type CreateRoleDTO = {
-  name: string
-}
-
-export type PaginateParams = {
-  //Criando o paginador
-  page: number
-  skip: number
-  take: number
-} //Parametros do paginator
-
-export type RolesPaginateProperties = {
-  per_page: number
-  total: number
-  current_page: number
-  data: Role[]
-} //Retorno do paginator
-
-export class RolesRepository {
+export class RolesRepository implements IRolesRepository {
   private repository: Repository<Role> //Essa variavel vai manipular as informações da estrutura de dados role
-  private static INSTANCE: RolesRepository //Implementação do singleton | Tambem é a minha instancia
+  //Singleton agora é instanciado no container!!!!!
   //Static é uma variavel que não terá o valor alterado dentro do código
-  private constructor() {
+  constructor() {
     this.repository = dataSource.getRepository(Role) //Atribuindo a minha propriedade repository o repositorio de um objeto Role
     //Quando instanciar a classe Role, ele fala que se iniciará como um array vazio
-  }
-
-  public static getInstance(): RolesRepository {
-    if (!RolesRepository.INSTANCE) {
-      RolesRepository.INSTANCE = new RolesRepository()
-    }
-    return RolesRepository.INSTANCE
   }
 
   //Método usado para garantir que tenha apenas 1 instancia de RolesRepository dentro do código

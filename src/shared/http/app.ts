@@ -7,7 +7,7 @@ import cors from 'cors'
 import { errors } from 'celebrate'
 import { AppError } from '@shared/Errors/AppError'
 import swaggerFile from '../../swagger.json'
-
+import '@shared/container' //Quando o arquivo for carregado o container entrará em execução na hora!
 const app = express()
 
 app.use(

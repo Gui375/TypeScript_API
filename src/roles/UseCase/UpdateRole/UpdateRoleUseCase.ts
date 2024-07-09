@@ -1,15 +1,20 @@
 //Validação das regras antes de ir pra controller
 import { Role } from '@roles/http/routes/entities/Role'
-import { RolesRepository } from '@roles/repositories/RolesRepository'
+import { IRolesRepository } from '@roles/repositories/IRolesRepository'
 import { AppError } from '@shared/Errors/AppError'
+import { inject, injectable } from 'tsyringe'
 
 type UpdateRoleDTO = {
   id: string
   name: string
 }
 //Onde fica as regras e onde é gravado o novo objeto de fato
+@injectable() //Fala que é uma classe que pode ser injetada uma dependencia
 export class UpdateRoleUseCase {
-  constructor(private rolesRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private rolesRepository: IRolesRepository,
+  ) {}
 
   async execute({ id, name }: UpdateRoleDTO): Promise<Role> {
     const role = await this.rolesRepository.findById(id)
