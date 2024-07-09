@@ -1,13 +1,19 @@
-import { deleteRolesController } from '@roles/UseCase/DeleteRole'
-import { updateRolesController } from '@roles/UseCase/UpdateRole'
-import { createRolesController } from '@roles/UseCase/createRole'
-import { listRolesController } from '@roles/UseCase/listRole'
-import { showRolesController } from '@roles/UseCase/showRole'
 import { Router } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate'
+import { container } from 'tsyringe'
+import { CreateRoleController } from '@roles/UseCase/createRole/CreateRoleController'
+import { ListRolesController } from '@roles/UseCase/listRole/listRolesController'
+import { showRoleController } from '@roles/UseCase/showRole/showRoleController'
+import { UpdateRoleController } from '@roles/UseCase/UpdateRole/UpdateRoleController'
+import { deleteRoleController } from '@roles/UseCase/DeleteRole/DeleteRoleController'
 
 const rolesRoutes = Router()
-
+//Area responsavel por linkar as controler no arquivo de rotas, atraves do container!
+const createRolesController = container.resolve(CreateRoleController)
+const listRolesController = container.resolve(ListRolesController)
+const showRolesController = container.resolve(showRoleController)
+const updateRolesController = container.resolve(UpdateRoleController)
+const deleteRolesController = container.resolve(deleteRoleController)
 rolesRoutes.post(
   '/',
   celebrate({
