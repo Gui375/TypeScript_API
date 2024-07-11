@@ -4,6 +4,7 @@ import { CreateRolesTable1717677183833 } from './migrations/1717677183833-Create
 import { Role } from '@roles/http/routes/entities/Role'
 import { CreateUsersTable1720727564124 } from './migrations/1720727564124-CreateUsersTable'
 import { AddRoleIdToUsersTable1720728804501 } from './migrations/1720728804501-AddRoleIdToUsersTable'
+import { User } from '@user/entites/user'
 
 export const dataSource = new DataSource({
   type: 'sqlite',
@@ -12,7 +13,7 @@ export const dataSource = new DataSource({
   // username: "test",
   // password: 'test',
   database: './db.sqlite',
-  entities: [Role], //Definindo as entidades
+  entities: [Role, User], //Definindo as entidades
   migrations: [
     CreateRolesTable1717677183833,
     CreateUsersTable1720727564124,
