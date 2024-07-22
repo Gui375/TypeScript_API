@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { Role } from '@roles/http/routes/entities/Role'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 
 @Entity('users') //Decorator do typeORM | 'role' = nome da tabela
@@ -20,6 +27,11 @@ export class User {
 
   @Column()
   avatar?: string //Esse campo é opcional
+
+  @ManyToOne(() => Role, {
+    cascade: true, //Quando esta opção esta como true, tudo que for alterado aqui, será propagado pra entidade relacionada no caso Role
+  })
+  role: Role // Na migration temos esse campo criado lá roleId, no typeORM ele automaticamente identifica pra gente que é na propriedade role e ignora o Id
 
   @CreateDateColumn()
   created_at: Date
