@@ -1,4 +1,5 @@
 import { Role } from '@roles/http/routes/entities/Role'
+import { Exclude } from 'class-transformer'
 import {
   Column,
   CreateDateColumn,
@@ -20,6 +21,7 @@ export class User {
   email: string
 
   @Column()
+  @Exclude() //Decoretor responsavel por ocultar o atributo do retorno
   password: string
 
   @Column()
