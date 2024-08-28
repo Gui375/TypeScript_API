@@ -25,11 +25,11 @@ export class CreateLoginUseCase {
   async execute({ email, password }: CreateLoginDTO): Promise<IResponse> {
     const user = await this.userRepository.findByEmail(email)
     if (!user) {
-      throw new AppError('Incorrect email/password combination', 401)
+      throw new AppError('Incorrect email/password combination 1', 401)
     }
     const passwordConfirmed = await compare(password, user.password)
     if (!passwordConfirmed) {
-      throw new AppError('Incorrect email/password combination', 401)
+      throw new AppError('Incorrect email/password combination 2', 401)
     }
     const token = sign({}, jwtConfig.jwt.secret, {
       subject: user.id,
