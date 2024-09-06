@@ -31,6 +31,7 @@ export class CreateLoginUseCase {
     if (!passwordConfirmed) {
       throw new AppError('Incorrect email/password combination 2', 401)
     }
+    //Método que cria o tokem
     const token = sign({}, jwtConfig.jwt.secret, {
       subject: user.id,
       expiresIn: jwtConfig.jwt.expiresIn,

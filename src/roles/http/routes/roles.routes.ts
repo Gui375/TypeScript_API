@@ -6,6 +6,7 @@ import { ListRolesController } from '@roles/UseCase/listRole/listRolesController
 import { showRoleController } from '@roles/UseCase/showRole/showRoleController'
 import { UpdateRoleController } from '@roles/UseCase/UpdateRole/UpdateRoleController'
 import { deleteRoleController } from '@roles/UseCase/DeleteRole/DeleteRoleController'
+import { isAuthenticated } from '@shared/http/middlewares/isAuthenticated'
 
 const rolesRoutes = Router()
 //Area responsavel por linkar as controler no arquivo de rotas, atraves do container!
@@ -14,6 +15,9 @@ const listRolesController = container.resolve(ListRolesController)
 const showRolesController = container.resolve(showRoleController)
 const updateRolesController = container.resolve(UpdateRoleController)
 const deleteRolesController = container.resolve(deleteRoleController)
+
+rolesRoutes.use(isAuthenticated)
+
 rolesRoutes.post(
   '/',
   celebrate({
