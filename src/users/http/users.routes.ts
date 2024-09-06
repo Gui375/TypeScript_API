@@ -11,9 +11,11 @@ const createUserController = container.resolve(CreateUserController)
 const listUsersContoller = container.resolve(ListUsersController)
 const crateLoginController = container.resolve(CreateLoginController)
 
+userRouter.use(isAuthenticated) //Faz a mesma coisa so que pra todos de uma vez, já que executa antes de tudo
+
 userRouter.post(
   '/',
-  isAuthenticated, //Autentica com o tokem
+  // isAuthenticated, //Autentica com o tokem
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -30,7 +32,7 @@ userRouter.post(
 
 userRouter.get(
   '/',
-  isAuthenticated, //Autentica com o tokem
+  // isAuthenticated, //Autentica com o tokem
   celebrate({
     [Segments.QUERY]: {
       page: Joi.number(),
