@@ -3,8 +3,13 @@ import { NextFunction, Request, Response } from 'express'
 import { Secret, verify } from 'jsonwebtoken'
 import authConfig from '@config/auth'
 //Método pra validar e autenticar via tokem JWT
+
+type JwtPayloadProps = {
+  sub: string
+}
+
 export const isAuthenticated = (
-  request: Request,
+  request: Request, //Modificamos ela no arquivo de definição de tipo no caminho @types\express\index.d.ts
   response: Response,
   next: NextFunction,
 ) => {
@@ -17,7 +22,12 @@ export const isAuthenticated = (
   const token = authHeader.replace('Bearer ', '') // Já pré coloca o Bearer no valor do token, que é necessário para verificação
   //Extraimos o tokem do cabeçalho
   try {
-    verify(token, authConfig.jwt.secret as Secret) // Verifica se o tokem é valido!
+    const decoderToken = verify(token, authConfig.jwt.secret as Secret) // Verifica se o tokem é valido!
+    // Nessa linha estamos pegando apenas o sub do decoder token
+    const { sub } = decoderToken as JwtPayloadProps //Estamos falando que queremos pegar somente o modelo do JwtPayload
+    request.user = {
+      id: sub,
+    }
     return next()
   } catch {
     throw new AppError('Invalid authentication token', 401)
