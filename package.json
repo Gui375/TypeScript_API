@@ -34,6 +34,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@types/multer": "^1.4.12",
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.3",
     "class-transformer": "^0.5.1",
@@ -42,6 +43,7 @@
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "reflect-metadata": "^0.2.2",
     "rimraf": "^5.0.7",
     "sqlite3": "^5.1.7",
